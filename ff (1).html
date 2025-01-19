@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منصة 100/100 جزائري للتبرع بالدم">
+    <title>100/100 جزائري</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&family=Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* أنماط CSS */
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            font-size: 1.2rem;
+            overflow-x: hidden;
+        }
+
+        header, footer {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1, h2 {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        button, input[type="file"] {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover, input[type="file"]:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        textarea, input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        textarea:focus, input[type="text"]:focus, select:focus {
+            border-color: #6a11cb;
+            box-shadow: 0px 0px 10px rgba(106, 17, 203, 0.5);
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: #e0e0e0;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .chat-message strong {
+            color: #6a11cb;
+        }
+
+        .icon {
+            margin-left: 10px;
+        }
+
+        .emoji-button {
+            font-size: 1.2rem;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .copyright {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #fff;
+        }
+
+        .developer-name {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-share button {
+            background: transparent;
+            border: 2px solid #fff;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: #fff;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .social-share button:hover {
+            background: #fff;
+            color: #1e3c72;
+        }
+
+        .phone-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .phone-group select {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .phone-group input[type="tel"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .phone-group input[type="tel"]:focus {
+            border-color: #6a11cb;
+            box-shadow: 0px 0px 10px rgba(106, 17, 203, 0.5);
+        }
+
+        .phone-group button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .phone-group button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            button, input[type="file"] {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+
+            .phone-group input[type="tel"] {
+                font-size: 1rem;
+            }
+
+            .phone-group button {
+                font-size: 1rem;
+                padding: 10px 12px;
+            }
+
+            .copyright {
+                font-size: 1.2rem;
+            }
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #2a5298;
+            color: #fff;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* إضافة التمرير */
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #1e3c72;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-content {
+            padding: 20px;
+        }
+
+        .sidebar-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-content ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-content ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-content ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #6a11cb;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 1001;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #2575fc;
+            transform: translateY(-3px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* إضافة ساعة رقمية */
+        .header-clock {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1.5rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        /* تغيير خط الكتابة */
+        body {
+            font-family: 'Cairo', 'Kufi Bold', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        @font-face {
+            font-family: 'Kufi Bold';
+            src: url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
+        }
+
+        /* إيموجيات التقييم */
+        .rating-emoji {
+            font-size: 1.5rem;
+            margin-left: 5px;
+        }
+
+        .rating-emoji.good {
+            color: #4caf50; /* أخضر */
+        }
+
+        .rating-emoji.average {
+            color: #ffeb3b; /* أصفر */
+        }
+
+        .rating-emoji.bad {
+            color: #f44336; /* أحمر */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- زر تبديل الوضع الليلي -->
+    <button class="dark-mode-toggle" id="toggle-dark-mode">🌙</button>
+
+    <!-- زر فتح القائمة الجانبية -->
+    <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- القائمة الجانبية -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 data-key="sidebar_title">القائمة الجانبية</h2>
+        </div>
+        <div class="sidebar-content">
+            <ul>
+                <li><a href="#index-section"><i class="fas fa-home"></i> <span data-key="home">الرئيسية</span></a></li>
+                <li><a href="#friend-requests"><i class="fas fa-user-friends"></i> <span data-key="friend_requests">طلبات الصداقة</span></a></li>
+                <li><a href="#messaging-section"><i class="fas fa-comments"></i> <span data-key="messaging">المراسلة</span></a></li>
+                <li><a href="#blood-diversity"><i class="fas fa-tint"></i> <span data-key="blood_diversity">تنوع فصائل الدم</span></a></li>
+                <li><a href="#patient-requests"><i class="fas fa-hand-holding-heart"></i> <span data-key="patient_requests">طلبات المرضى</span></a></li>
+                <li><a href="#statistics"><i class="fas fa-chart-line"></i> <span data-key="statistics">الإحصائيات</span></a></li>
+                <li><a href="#financial-assistance"><i class="fas fa-donate"></i> <span data-key="financial_assistance">المساعدة المالية</span></a></li>
+                <li><a href="#medical-news"><i class="fas fa-newspaper"></i> <span data-key="medical_news">أخبار طبية</span></a></li>
+                <li><a href="#psychological-support"><i class="fas fa-heart"></i> <span data-key="psychological_support">الدعم النفسي</span></a></li>
+                <li><a href="#medical-assistance"><i class="fas fa-hospital"></i> <span data-key="medical_assistance">المساعدة الطبية</span></a></li>
+                <li><a href="#volunteering"><i class="fas fa-hands-helping"></i> <span data-key="volunteering">التطوع</span></a></li>
+                <li><a href="#medical-tests"><i class="fas fa-stethoscope"></i> <span data-key="medical_tests">الفحوصات الطبية</span></a></li>
+                <li><a href="#evaluation"><i class="fas fa-star"></i> <span data-key="evaluation">تقييم المتبرعين</span></a></li>
+                <li><a href="#medical-certificates"><i class="fas fa-file-medical"></i> <span data-key="medical_certificates">الشهادات الطبية</span></a></li>
+                <!-- إضافة أقسام جديدة -->
+                <li><a href="#medicine-search"><i class="fas fa-pills"></i> <span data-key="medicine_search">البحث عن دواء</span></a></li>
+                <li><a href="#suggest-idea"><i class="fas fa-lightbulb"></i> <span data-key="suggest_idea">اقتراح فكرة</span></a></li>
+                <li><a href="#donation-centers"><i class="fas fa-hospital"></i> <span data-key="donation_centers">مراكز التبرع</span></a></li>
+                <li><a href="#doctors"><i class="fas fa-user-md"></i> <span data-key="doctors">تسجيل الأطباء</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- الغطاء الخارجي لإغلاق القائمة -->
+    <div class="overlay" id="overlay"></div>
+
+    <header>
+        <h1 data-key="welcome_message">100/100 جزائري</h1>
+        <p data-key="donate_blood">منصة وطنية للتبرع بالدم</p>
+        <!-- إضافة الساعة والتاريخ داخل الـ header -->
+        <div class="header-clock" id="header-clock"></div>
+        <!-- إضافة خيار تغيير اللغة -->
+        <select id="language-selector">
+            <option value="ar">العربية</option>
+            <option value="fr">Français</option>
+        </select>
+    </header>
+
+    <!-- قسم التبرع بالدم -->
+    <section>
+        <h2><i class="fas fa-heartbeat icon"></i> <span data-key="donate_blood">التبرع بالدم</span></h2>
+        <form id="donor-form">
+            <label data-key="full_name">الاسم الكامل:</label>
+            <input type="text" id="name" placeholder="ادخل اسمك" required>
+
+            <!-- رقم الهاتف -->
+            <label data-key="phone_number">رقم الهاتف:</label>
+            <div class="phone-group">
+                <!-- رمز الدولة -->
+                <select id="country-code">
+                    <option value="+213">+213 (الجزائر)</option>
+                </select>
+
+                <!-- رقم الهاتف -->
+                <input type="tel" id="phone" placeholder="ادخل رقم الهاتف" maxlength="10" required>
+            </div>
+
+            <!-- رسالة الخطأ -->
+            <div class="error-message" id="error-message">رقم الهاتف يجب أن يكون 10 أرقام.</div>
+
+            <!-- إجراءات الهاتف -->
+            <div class="phone-actions">
+                <button type="button" onclick="callPhone()" data-key="call">اتصال</button>
+                <button type="button" onclick="sendSMS()" data-key="send_sms">إرسال رسالة</button>
+            </div>
+
+            <!-- الجنس -->
+            <select id="gender" required>
+                <option value="" disabled selected data-key="choose_gender">اختر الجنس</option>
+                <option value="ذكر" data-key="male">ذكر</option>
+                <option value="أنثى" data-key="female">أنثى</option>
+            </select>
+
+            <!-- الولاية -->
+            <label data-key="state">الولاية:</label>
+            <select id="state" required>
+                <option value="" disabled selected data-key="choose_state">اختر الولاية</option>
+                <option value="1">أدرار</option>
+                <option value="2">الشلف</option>
+                <option value="3">الأغواط</option>
+                <option value="4">أم البواقي</option>
+                <option value="5">باتنة</option>
+                <option value="6">بجاية</option>
+                <option value="7">بسكرة</option>
+                <option value="8">بشار</option>
+                <option value="9">البليدة</option>
+                <option value="10">البويرة</option>
+                <option value="11">تمنراست</option>
+                <option value="12">تبسة</option>
+                <option value="13">تلمسان</option>
+                <option value="14">تيارت</option>
+                <option value="15">تيزي وزو</option>
+                <option value="16">الجزائر</option>
+                <option value="17">الجلفة</option>
+                <option value="18">جيجل</option>
+                <option value="19">سطيف</option>
+                <option value="20">سعيدة</option>
+                <option value="21">سكيكدة</option>
+                <option value="22">سيدي بلعباس</option>
+                <option value="23">عنابة</option>
+                <option value="24">قالمة</option>
+                <option value="25">قسنطينة</option>
+                <option value="26">المدية</option>
+                <option value="27">مستغانم</option>
+                <option value="28">المسيلة</option>
+                <option value="29">معسكر</option>
+                <option value="30">ورقلة</option>
+                <option value="31">وهران</option>
+                <option value="32">البيض</option>
+                <option value="33">إليزي</option>
+                <option value="34">برج بوعريريج</option>
+                <option value="35">بومرداس</option>
+                <option value="36">الطارف</option>
+                <option value="37">تندوف</option>
+                <option value="38">تيسمسيلت</option>
+                <option value="39">الوادي</option>
+                <option value="40">خنشلة</option>
+                <option value="41">سوق أهراس</option>
+                <option value="42">تيبازة</option>
+                <option value="43">ميلة</option>
+                <option value="44">عين الدفلى</option>
+                <option value="45">النعامة</option>
+                <option value="46">عين تموشنت</option>
+                <option value="47">غرداية</option>
+                <option value="48">غليزان</option>
+                <option value="49">تيميمون</option>
+                <option value="50">برج باجي مختار</option>
+                <option value="51">أولاد جلال</option>
+                <option value="52">بني عباس</option>
+                <option value="53">عين صالح</option>
+                <option value="54">عين قزام</option>
+                <option value="55">تقرت</option>
+                <option value="56">جانت</option>
+                <option value="57">المغير</option>
+                <option value="58">المنيعة</option>
+            </select>
+
+            <!-- البلدية -->
+            <label data-key="municipality">البلدية:</label>
+            <input type="text" id="municipality" placeholder="ادخل البلدية" required>
+
+            <label data-key="blood_type">فصيلة الدم:</label>
+            <select id="blood-type" required>
+                <option value="" disabled selected data-key="choose_blood_type">اختر فصيلة الدم</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+
+            <button type="submit" class="emoji-button" data-key="submit">إرسال</button>
+        </form>
+    </section>
+
+    <!-- قسم الدعم النفسي -->
+    <section id="psychological-support">
+        <h2><i class="fas fa-heart icon"></i> <span data-key="psychological_support">الدعم النفسي</span></h2>
+        <p data-key="psychological_support_description">يمكنك التواصل مع أخصائيين نفسيين عبر المنصة.</p>
+        <button onclick="openChatWithPsychologist()" data-key="start_chat">ابدأ المحادثة</button>
+    </section>
+
+    <!-- قسم البحث عن زمرة الدم -->
+    <section id="blood-search">
+        <h2><i class="fas fa-tint icon"></i> <span data-key="search_blood_type">البحث عن زمرة الدم</span></h2>
+        <select id="search-blood-type">
+            <option value="" disabled selected data-key="choose_blood_type">اختر فصيلة الدم</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <button onclick="searchDonors()" data-key="search">بحث</button>
+        <div id="donors-list"></div>
+    </section>
+
+    <!-- قسم قائمة المتبرعين -->
+    <section id="donors-list-section">
+        <h2><i class="fas fa-users icon"></i> <span data-key="donors_list">قائمة المتبرعين</span></h2>
+        <button onclick="sortDonorsByBloodType()" data-key="sort_by_blood_type">ترتيب حسب فصيلة الدم</button>
+        <div id="sorted-donors-list"></div>
+    </section>
+
+    <footer>
+        <p class="copyright" data-key="copyright">جميع الحقوق محفوظة 100/100 جزائري 2025</p>
+        <p class="developer-name" data-key="developer_name">مطور بواسطة: ABDELILLAH DRIS</p>
+        <div class="social-share">
+            <button onclick="shareApp('facebook')"><i class="fab fa-facebook-f"></i></button>
+            <button onclick="shareApp('twitter')"><i class="fab fa-twitter"></i></button>
+            <button onclick="shareApp('whatsapp')"><i class="fab fa-whatsapp"></i></button>
+        </div>
+    </footer>
+
+    <script>
+        // تبديل الوضع الليلي
+        document.getElementById('toggle-dark-mode').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            document.getElementById('toggle-dark-mode').innerText = isDarkMode ? '🌞' : '🌙';
+        });
+
+        // فتح وإغلاق القائمة الجانبية
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        });
+
+        // التحقق من صحة رقم الهاتف
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let phoneNumber = e.target.value.replace(/\D/g, ''); // إزالة أي أحرف غير رقمية
+            phoneNumber = phoneNumber.substring(0, 10); // تحديد طول الرقم بـ 10 أرقام
+            e.target.value = phoneNumber;
+        });
+
+        // التحقق من صحة رقم الهاتف عند الإرسال
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            const errorMessage = document.getElementById('error-message');
+            const phoneNumber = phoneInput.value;
+
+            if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
+                errorMessage.classList.remove('show');
+                alert(`رقم الهاتف المدخل: ${document.getElementById('country-code').value} ${phoneNumber}`);
+            } else {
+                errorMessage.classList.add('show');
+            }
+        }
+
+        // إضافة ساعة رقمية وتاريخ اليوم
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // الأشهر تبدأ من 0
+            const year = now.getFullYear();
+            const clock = document.getElementById('header-clock');
+            clock.textContent = `${hours}:${minutes}:${seconds} - ${day}/${month}/${year}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // إضافة تقييم الأطباء
+        const doctorRatings = [];
+
+        document.getElementById('doctor-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const doctorName = document.getElementById('doctor-name').value;
+            const doctorPhone = document.getElementById('doctor-phone').value;
+            const clinicName = document.getElementById('clinic-name').value;
+            const doctorRating = document.getElementById('doctor-rating').value;
+
+            const ratingEmoji = getRatingEmoji(doctorRating);
+
+            doctorRatings.push({
+                name: doctorName,
+                phone: doctorPhone,
+                clinic: clinicName,
+                rating: doctorRating,
+                emoji: ratingEmoji
+            });
+
+            displayDoctorRatings();
+        });
+
+        function getRatingEmoji(rating) {
+            if (rating >= 8) {
+                return '😊'; // إيموجي جيد
+            } else if (rating >= 5) {
+                return '😐'; // إيموجي متوسط
+            } else {
+                return '😞'; // إيموجي سيء
+            }
+        }
+
+        function displayDoctorRatings() {
+            const ratingsContainer = document.getElementById('doctor-ratings');
+            ratingsContainer.innerHTML = '';
+
+            doctorRatings.forEach(rating => {
+                const ratingElement = document.createElement('div');
+                ratingElement.className = 'doctor-rating';
+                ratingElement.innerHTML = `
+                    <strong>${rating.name}</strong> - ${rating.clinic} - ${rating.phone} - التقييم: ${rating.rating} ${rating.emoji}
+                `;
+                ratingsContainer.appendChild(ratingElement);
+            });
+        }
+
+        // الدعم النفسي
+        function openChatWithPsychologist() {
+            alert("سيتم فتح نافذة محادثة مع أخصائي نفسي.");
+            // يمكنك هنا إضافة منطق لفتح نافذة محادثة فعلية
+        }
+
+        // مشاركة التطبيق
+        function shareApp(platform) {
+            const url = window.location.href;
+            let shareUrl = '';
+
+            switch (platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`;
+                    break;
+            }
+
+            window.open(shareUrl, '_blank');
+        }
+
+        // البحث عن المتبرعين حسب فصيلة الدم
+        const donors = [
+            { name: "محمد علي", bloodType: "A+", online: true },
+            { name: "فاطمة الزهراء", bloodType: "B-", online: false },
+            { name: "أحمد سمير", bloodType: "O+", online: true }
+        ];
+
+        function searchDonors() {
+            const selectedBloodType = document.getElementById('search-blood-type').value;
+            const filteredDonors = donors.filter(donor => donor.bloodType === selectedBloodType);
+            const donorsList = document.getElementById('donors-list');
+            donorsList.innerHTML = '';
+
+            if (filteredDonors.length > 0) {
+                filteredDonors.forEach(donor => {
+                    const donorElement = document.createElement('div');
+                    donorElement.className = 'donor';
+                    donorElement.innerHTML = `
+                        <strong>${donor.name}</strong> - ${donor.bloodType} 
+                        <span class="online-status">${donor.online ? '🟢 متصل' : '🔴 غير متصل'}</span>
+                    `;
+                    donorsList.appendChild(donorElement);
+                });
+            } else {
+                donorsList.innerHTML = '<p>لا يوجد متبرعين بهذه الفصيلة.</p>';
+            }
+        }
+
+        // ترتيب المتبرعين حسب فصيلة الدم
+        function sortDonorsByBloodType() {
+            const sortedDonors = donors.sort((a, b) => a.bloodType.localeCompare(b.bloodType));
+            const sortedDonorsList = document.getElementById('sorted-donors-list');
+            sortedDonorsList.innerHTML = '';
+
+            sortedDonors.forEach(donor => {
+                const donorElement = document.createElement('div');
+                donorElement.className = 'donor';
+                donorElement.innerHTML = `
+                    <strong>${donor.name}</strong> - ${donor.bloodType} 
+                    <span class="online-status">${donor.online ? '🟢 متصل' : '🔴 غير متصل'}</span>
+                `;
+                sortedDonorsList.appendChild(donorElement);
+            });
+        }
+
+        // دعم الترجمة
+        const translations = {
+            ar: {
+                welcome_message: "100/100 جزائري",
+                donate_blood: "منصة وطنية للتبرع بالدم",
+                full_name: "الاسم الكامل",
+                phone_number: "رقم الهاتف",
+                choose_gender: "اختر الجنس",
+                male: "ذكر",
+                female: "أنثى",
+                state: "الولاية",
+                choose_state: "اختر الولاية",
+                municipality: "البلدية",
+                blood_type: "فصيلة الدم",
+                choose_blood_type: "اختر فصيلة الدم",
+                submit: "إرسال",
+                call: "اتصال",
+                send_sms: "إرسال رسالة",
+                psychological_support: "الدعم النفسي",
+                psychological_support_description: "يمكنك التواصل مع أخصائيين نفسيين عبر المنصة.",
+                start_chat: "ابدأ المحادثة",
+                search_blood_type: "البحث عن زمرة الدم",
+                search: "بحث",
+                donors_list: "قائمة المتبرعين",
+                sort_by_blood_type: "ترتيب حسب فصيلة الدم",
+                copyright: "جميع الحقوق محفوظة 100/100 جزائري 2025",
+                developer_name: "مطور بواسطة: ABDELILLAH DRIS",
+                sidebar_title: "القائمة الجانبية",
+                home: "الرئيسية",
+                friend_requests: "طلبات الصداقة",
+                messaging: "المراسلة",
+                blood_diversity: "تنوع فصائل الدم",
+                patient_requests: "طلبات المرضى",
+                statistics: "الإحصائيات",
+                financial_assistance: "المساعدة المالية",
+                medical_news: "أخبار طبية",
+                medical_assistance: "المساعدة الطبية",
+                volunteering: "التطوع",
+                medical_tests: "الفحوصات الطبية",
+                evaluation: "تقييم المتبرعين",
+                medical_certificates: "الشهادات الطبية",
+                medicine_search: "البحث عن دواء",
+                suggest_idea: "اقتراح فكرة",
+                donation_centers: "مراكز التبرع",
+                doctors: "تسجيل الأطباء"
+            },
+            fr: {
+                welcome_message: "100/100 Algérien",
+                donate_blood: "Plateforme nationale de don de sang",
+                full_name: "Nom complet",
+                phone_number: "Numéro de téléphone",
+                choose_gender: "Choisir le sexe",
+                male: "Homme",
+                female: "Femme",
+                state: "Wilaya",
+                choose_state: "Choisir la wilaya",
+                municipality: "Commune",
+                blood_type: "Groupe sanguin",
+                choose_blood_type: "Choisir le groupe sanguin",
+                submit: "Envoyer",
+                call: "Appeler",
+                send_sms: "Envoyer un SMS",
+                psychological_support: "Soutien psychologique",
+                psychological_support_description: "Vous pouvez contacter des psychologues via la plateforme.",
+                start_chat: "Commencer la discussion",
+                search_blood_type: "Rechercher un groupe sanguin",
+                search: "Rechercher",
+                donors_list: "Liste des donneurs",
+                sort_by_blood_type: "Trier par groupe sanguin",
+                copyright: "Tous droits réservés 100/100 Algérien 2025",
+                developer_name: "Développé par: ABDELILLAH DRIS",
+                sidebar_title: "Menu latéral",
+                home: "Accueil",
+                friend_requests: "Demandes d'amis",
+                messaging: "Messagerie",
+                blood_diversity: "Diversité des groupes sanguins",
+                patient_requests: "Demandes des patients",
+                statistics: "Statistiques",
+                financial_assistance: "Aide financière",
+                medical_news: "Nouvelles médicales",
+                medical_assistance: "Aide médicale",
+                volunteering: "Bénévolat",
+                medical_tests: "Tests médicaux",
+                evaluation: "Évaluation des donneurs",
+                medical_certificates: "Certificats médicaux",
+                medicine_search: "Recherche de médicaments",
+                suggest_idea: "Suggérer une idée",
+                donation_centers: "Centres de don",
+                doctors: "Enregistrement des médecins"
+            }
+        };
+
+        let currentLanguage = 'ar'; // اللغة الافتراضية
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateTexts();
+        }
+
+        function updateTexts() {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                element.textContent = translations[currentLanguage][key];
+            });
+        }
+
+        // عند تغيير اللغة
+        document.getElementById('language-selector').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        // تحميل النصوص عند بدء التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTexts();
+        });
+    </script>
+</body>
+
+</html
